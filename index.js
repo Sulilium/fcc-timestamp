@@ -24,12 +24,11 @@ app.get("/api/:date?", function (req, res) {
   let date;
   if (req.params.date==undefined) date = new Date();
   else {
-    if(req.params.date.charAt(4)=="-") date = new Date(req.params.date);
-    date = new Date(Number(req.params.date));
+    if (Number(req.params.date)) date = new Date(Number(req.params.date));
+    else date = new Date(req.params.date);
   }
   unixDisplay = date.getTime();
-  console.log(date, unixDisplay);
-  
+
   if (isNaN(unixDisplay)) res.json({error: "Invalid Date"});
   else res.json({unix: unixDisplay, utc: date.toUTCString()});
 });
