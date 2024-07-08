@@ -30,7 +30,7 @@ app.get("/api/:date?", function (req, res) {
   else {
     if (Number(req.params.date)) {
       date = new Date(Number(req.params.date));
-      unixDisplay = req.params.date;
+      unixDisplay = Number(req.params.date);
     }
     console.log(date, unixDisplay);
     
