@@ -21,12 +21,12 @@ app.get("/", function (req, res) {
 
 // your first API endpoint... 
 app.get("/api/:date?", function (req, res) {
-  let date = new Date(Number(req.params.date));
-  let unixDisplay = req.params.date;
-
-  if (req.params.date.charAt(4)=="-") {
-    date = new Date(req.params.date);
-    unixDisplay = date.getTime();
+  let date = new Date(req.params.date);
+  let unixDisplay = date.getTime();
+  
+  if (Number(req.params.date)) {
+    date = new Date(Number(req.params.date));
+    unixDisplay = req.params.date;
   }
   res.json({unix: unixDisplay, utc: date.toUTCString()});
 });
